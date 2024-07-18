@@ -1,7 +1,7 @@
 # Trabalho 1 de DevOps:
 
 *Caio Ueda Sampaio: 802215*
-*Vitor Enzo: 802123*
+*Vitor Enzo Araujo Costa: 802123*
 
 ## Aplicação Escolhida:
 
