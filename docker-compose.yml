@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./BackEnd
+      dockerfile: Dockerfile
+    environment:
+      - DB=sqlite:///app/filmesdb.db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./BackEnd:/App
+      - sqlite_db:/App/filmesdb.db
+
+  frontend:
+    build:
+      context: ./FrontEnd/movie-catalog
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./FrontEnd/movie-catalog:/App
+
+volumes:
+  sqlite_db:
