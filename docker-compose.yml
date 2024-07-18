@@ -6,12 +6,12 @@ services:
       context: ./BackEnd
       dockerfile: Dockerfile
     environment:
-      - DB=sqlite:///app/filmesdb.db
+      - DB=sqlite:///app/db/filmesdb.db
     ports:
       - "8000:8000"
     volumes:
       - ./BackEnd:/App
-      - sqlite_db:/App/filmesdb.db
+      - sqlite-data:/app/db
 
   frontend:
     build:
@@ -22,5 +22,12 @@ services:
     volumes:
       - ./FrontEnd/movie-catalog:/App
 
+  sqlite:
+    image: alpine
+    volumes:
+      - sqlite-data:/app/db
+    command: >
+      sh -c "touch /app/db/filmesdb.db && chmod 666 /app/db/filmesdb.db && tail -f /dev/null"
+
 volumes:
-  sqlite_db:
+  sqlite-data:

@@ -2,15 +2,15 @@ FROM python:3.11-slim
 
 WORKDIR /App
 
-COPY . /App
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY ./App /App
 
 ENV DB="sqlite:///./filmesdb.db"
+ENV PYTHONPATH=/App
 
 EXPOSE 8000
 
-RUN pip install -r requirements.txt
-
-COPY init_db.sh /App/init_db.sh
-RUN chmod +x /App/init_db.sh
-
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0","--reload"]
+CMD ["uvicorn", "App.main:app", "--host", "0.0.0.0","--reload"]
