@@ -6,12 +6,15 @@ services:
       context: ./BackEnd
       dockerfile: Dockerfile
     environment:
-      - DB=sqlite:///app/db/filmesdb.db
+      - PYTHONPATH=/App
+      - DB=sqlite:///App/db/filmesdb.db
     ports:
       - "8000:8000"
     volumes:
       - ./BackEnd:/App
-      - sqlite-data:/app/db
+      - sqlite-data:/App/db
+    depends_on:
+      - sqlite   
 
   frontend:
     build:
@@ -21,13 +24,15 @@ services:
       - "80:80"
     volumes:
       - ./FrontEnd/movie-catalog:/App
+    depends_on:
+      - backend  
 
   sqlite:
-    image: alpine
+    image: nginx:alpine
     volumes:
-      - sqlite-data:/app/db
+      - sqlite-data:/App/db
     command: >
-      sh -c "touch /app/db/filmesdb.db && chmod 666 /app/db/filmesdb.db && tail -f /dev/null"
+      sh -c "touch /App/db/filmesdb.db && chmod 666 /App/db/filmesdb.db && tail -f /dev/null"
 
 volumes:
   sqlite-data:

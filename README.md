@@ -20,7 +20,10 @@ A aplicação se trata de um sistema simples de gerenciamento de catálogo de fi
 - SQL
 
 ### Containers:
-- Docker
+- Docker:
+    - FrontEnd
+    - BackEnd
+    - BD
 
 ## Como Rodar o Projeto:
 
