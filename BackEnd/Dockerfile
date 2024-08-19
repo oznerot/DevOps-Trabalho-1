@@ -16,4 +16,4 @@ ENV PYTHONPATH=/App
 
 EXPOSE 8000
 
-CMD ["uvicorn", "main:App", "--host", "0.0.0.0","--reload"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0","--reload"]

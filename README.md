@@ -32,3 +32,4 @@ Basta rodar o seguinte comando a partir da raíz:
 ```
 docker compose up --build
 ```
+Depois, basta acessar http://localhost.
